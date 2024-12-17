@@ -152,6 +152,10 @@ function MontureZone({ api, actions, children, r }) {
         result = result.sort((a, b) => 
           order === 'asc' ? new Date(a.updatedAt) - new Date(b.updatedAt) : new Date(b.updatedAt) - new Date(a.updatedAt)
         );
+      }else if (filter === 'Homme') {
+        result = result.filter((monture) => monture?.genre === "Homme");
+      }else if (filter === 'Femme') {
+        result = result.filter((monture) => monture?.genre === "Femme");
       }
   
   
@@ -308,6 +312,8 @@ function MontureFilter() {
   return (
     <Select value={filter} onChange={(e) => setFilter(e.target.value)}>
       <option value="">Tous</option>
+      <option value="Homme">Hommes</option>
+      <option value="Femme">Femmes</option>
       <option value="marque">Par marque</option>
       <option value="quantity">Quantité</option>
       <option value="vendu">Vendu</option>
