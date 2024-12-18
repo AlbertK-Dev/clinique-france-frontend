@@ -226,7 +226,7 @@ function MontureList() {
       </Thead>
       <Tbody>
         {montures.map((monture) => (
-          <Tr key={monture._id}>
+          <Tr key={monture._id} backgroundColor={monture?.isInAlert ? "red.300" : ""}>
             <Td>{highlightSearchTerm(monture.brand, searchTerm)}</Td>
             <Td>{highlightSearchTerm(monture.model, searchTerm)}</Td>
             <Td >{monture?.genre}</Td>
