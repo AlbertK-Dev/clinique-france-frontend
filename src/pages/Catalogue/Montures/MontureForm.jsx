@@ -38,6 +38,7 @@ function MontureForm({
     brand: '',
     model: '',
     genre: '',
+    alert: 5,
     quantity: 1,
     isInStock: true
   });
@@ -48,6 +49,7 @@ function MontureForm({
         brand: monture?.brand || '',
         model: monture?.model || '',
         genre: monture?.genre || 'Homme',
+        alert: monture?.alert || 5,
         quantity: monture?.quantity || 1,
         isInStock: monture?.isInStock !== undefined ? monture.isInStock : true
       });
@@ -129,6 +131,29 @@ function MontureForm({
                 });
               }}
               value={`${formData.quantity}`}
+
+              min={1}
+              step={5}
+              paddingLeft={2}
+              paddingRight={10}
+            >
+              <NumberInputField />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+          </FormControl>
+          <FormControl mt={4}>
+            <FormLabel>Alerte a moins de</FormLabel>
+            <NumberInput
+              onChange={(value)=>{
+                setFormData({
+                  ...formData,
+                  alert: value
+                });
+              }}
+              value={`${formData.alert}`}
 
               min={1}
               step={5}
