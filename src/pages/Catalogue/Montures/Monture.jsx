@@ -144,7 +144,11 @@ function MontureZone({ api, actions, children, r }) {
         );
       } else if (filter === 'vendu') {
         result = result.filter((monture) => monture.isInStock === false);
-      } else if (filter === 'createdAt') {
+      }  else if (filter === 'alert') {
+        result = result.filter((monture) => monture?.isInAlert === true);
+      }else if (filter === 'no_alert') {
+        result = result.filter((monture) => monture?.isInAlert === false);
+      }else if (filter === 'createdAt') {
         result = result.sort((a, b) => 
           order === 'asc' ? new Date(a.createdAt) - new Date(b.createdAt) : new Date(b.createdAt) - new Date(a.createdAt)
         );
@@ -314,6 +318,8 @@ function MontureFilter() {
   return (
     <Select value={filter} onChange={(e) => setFilter(e.target.value)}>
       <option value="">Tous</option>
+      <option value="alert">En Alert</option>
+      <option value="no_alert">Sans Alert</option>
       <option value="Homme">Hommes</option>
       <option value="Femme">Femmes</option>
       <option value="marque">Par marque</option>
